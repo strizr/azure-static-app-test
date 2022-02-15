@@ -16,7 +16,13 @@
 
   <script>
     (async function () {
-      let response = await fetch(`api/message`);
+      let body = {token: "test", test: "ok"};
+
+      let response = await fetch(`api/message`, {
+        method: "post",
+        body: JSON.stringify(body),
+        headers: {"token": "test token"}
+      });
       let message = await response.json();
 
       document.querySelector("#message").innerHTML = message.text
